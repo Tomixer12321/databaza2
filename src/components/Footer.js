@@ -1,6 +1,6 @@
 import "./Footer.css";
 
-const Navbar = () => {
+const Footer = () => {
   return (
     <footer>
         <p>paticka</p>
@@ -8,4 +8,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Footer;

@@ -1,7 +1,7 @@
 import "./Navbar.css"
 import {NavLink} from "react-router-dom"
 
-const Footer = () => {
+const Navbar = () => {
   return <header>
     <nav>
         <NavLink to="/">Domov</NavLink>
@@ -10,4 +10,4 @@ const Footer = () => {
   </header>
 }
 
-export default Footer
+export default Navbar
