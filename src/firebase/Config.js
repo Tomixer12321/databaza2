@@ -14,4 +14,4 @@ const firebaseConfig = {
 
   const ProjectFirestore = firebase.firestore()
 
-  export {ProjectFirestore}
+  export default ProjectFirestore
