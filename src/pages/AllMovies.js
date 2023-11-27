@@ -1,4 +1,4 @@
-import ProjectFirestore from "../firebase/Config";
+import projectFirestore from "../firebase/Config";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -7,13 +7,13 @@ const AllMovies = () => {
   const [error, setError] = useState("");
 
   useEffect(()=>{
-    ProjectFirestore.collection("movies").get().then((snapshot)=>{
+    projectFirestore.collection("movies").get().then((snapshot)=>{
       if(snapshot.empty){
         setError("zadne filmy k vypsani")
       }else{
         let result=[]
         snapshot.docs.forEach((oneMovie)=>{
-          result.push({id:oneMovie.id,...oneMovie.data})
+          result.push({id:oneMovie.id,...oneMovie.data()})
         })
         setData(result)
       }
@@ -24,6 +24,15 @@ const AllMovies = () => {
 
   return <section>
     {error && <p>{error}</p>}
+    {data.map((oneMovie)=>{
+
+      const {id,title,minage,time}=oneMovie
+
+      return <div key={id}>
+        <p>{title}</p>
+        <Link to={`/one-movie/${id}`}>vice informacii</Link>
+      </div>
+    })}
     </section>;
 };
 

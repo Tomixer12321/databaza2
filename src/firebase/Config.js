@@ -10,8 +10,12 @@ const firebaseConfig = {
     appId: "1:641836234153:web:1d27c3ee3b3d46243cc0b8"
   };
 
-  firebase.initializeApp(firebaseConfig)
+// počáteční initializace
+firebase.initializeApp(firebaseConfig)
 
-  const ProjectFirestore = firebase.firestore()
 
-  export default ProjectFirestore
+// počáteční initilizace služeb
+const projectFirestore = firebase.firestore()
+
+
+export default projectFirestore 
