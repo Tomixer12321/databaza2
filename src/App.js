@@ -12,7 +12,7 @@ const App = () => {
         <Route to="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
           <Route path="all-movies" element={<AllMovies />} />
-          <Route path="form" element={<Form />}/>
+          <Route path="Form" element={<Form />}/>
           <Route path="one-movie/:movieId" element={<OneMovie />} />
         </Route>
       </Routes>

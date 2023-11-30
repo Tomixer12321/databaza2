@@ -6,9 +6,9 @@ const Navbar = () => {
     <nav>
         <NavLink to="/">Domov</NavLink>
         <NavLink to="all-movies">Filmy</NavLink>
-        <NavLink to="form">Formular</NavLink>
+        <NavLink to="Form">Formular</NavLink>
     </nav>
   </header>
 }
 
-export default Navbar
+export default Navbar 
