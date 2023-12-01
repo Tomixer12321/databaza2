@@ -1,5 +1,5 @@
 import { useState } from "react";
-import  projectFirestore  from "../firebase/Config";
+import projectFirestore from "../firebase/Config";
 
 const Form = () => {
   const [movieTtile, setMovieTitle] = useState("");

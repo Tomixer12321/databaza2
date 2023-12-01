@@ -6,34 +6,45 @@ const AllMovies = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState("");
 
-  useEffect(()=>{
-    projectFirestore.collection("movies").get().then((snapshot)=>{
-      if(snapshot.empty){
-        setError("zadne filmy k vypsani")
-      }else{
-        let result=[]
-        snapshot.docs.forEach((oneMovie)=>{
-          result.push({id:oneMovie.id,...oneMovie.data()})
-        })
-        setData(result)
-      }
-    }).catch((err)=>{
-      setError(err.message)
-    })
-  },[])
+  useEffect(() => {
+    const unsubscribe=projectFirestore
+      .collection("movies")
+      .onSnapshot((snapshot) => {
+        if (snapshot.empty) {
+          setError("zadne filmy k vypsani");
+        } else {
+          let result = [];
+          snapshot.docs.forEach((oneMovie) => {
+            result.push({ id: oneMovie.id, ...oneMovie.data() });
+          });
+          setData(result);
+        }
+      },(err)=>setError(err.message))
+      return (err)=>unsubscribe()
+  }, []);
 
-  return <section>
-    {error && <p>{error}</p>}
-    {data.map((oneMovie)=>{
+  const deleteMovie=(id)=>{
+    projectFirestore.collection("movies").doc(id).delete()
+  }
 
-      const {id,title,}=oneMovie
+  return (
+    <section>
+      {error && <p>{error}</p>}
+      {data.map((oneMovie) => {
+        const { id, title } = oneMovie;
 
-      return <div key={id}>
-        <p>{title}</p>
-        <Link to={`/one-movie/${id}`}>vice informacii</Link>
-      </div>
-    })}
-    </section>;
+        return (
+          <div key={id}>
+            <p>{title}</p>
+            <Link to={`/one-movie/${id}`}>vice informacii</Link>
+            <button type="button" onClick={() => deleteMovie(id)}>
+              smazat
+            </button>
+          </div>
+        );
+      })}
+    </section>
+  );
 };
 
 export default AllMovies;
