@@ -1,24 +1,52 @@
 import { useState } from "react";
-import { projectFirestore } from "../firebase/Config";
+import  projectFirestore  from "../firebase/Config";
 
 const Form = () => {
   const [movieTtile, setMovieTitle] = useState("");
   const [movieAge, setMovieAge] = useState(null);
   const [movieTime, setMovieTime] = useState(null);
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
-    console.log(movieTtile)
-    console.log(movieAge)
-    console.log(movieTime)
+
+    const newMovie = {
+      title: movieTtile,
+      age: parseInt(movieAge),
+      time: parseInt(movieTime),
+    };
+    try {
+      await projectFirestore.collection("movies").add(newMovie);
+      setMovieTitle("");
+      setMovieTime("");
+      setMovieAge("");
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
   return (
     <section>
       <form onSubmit={submitForm}>
-        <input type="text" placeholder="title" onChange={(e)=>setMovieTitle(e.target.value)}/>
-        <input type="number" placeholder="minimalny vek" min="1" onChange={(e)=>setMovieAge(e.target.value)}/>
-        <input type="nummber" placeholder="cas filmu" min="1" onChange={(e)=>setMovieTime(e.target.value)}/>
+        <input
+          type="text"
+          placeholder="title"
+          onChange={(e) => setMovieTitle(e.target.value)}
+          value={movieTtile}
+        />
+        <input
+          type="number"
+          placeholder="minimalny vek"
+          min="1"
+          onChange={(e) => setMovieAge(e.target.value)}
+          value={movieAge}
+        />
+        <input
+          type="number"
+          placeholder="cas filmu"
+          min="1"
+          onChange={(e) => setMovieTime(e.target.value)}
+          value={movieTime}
+        />
         <input type="submit" />
       </form>
     </section>
