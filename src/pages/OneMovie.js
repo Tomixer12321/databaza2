@@ -19,12 +19,13 @@ const OneMovie = () => {
     }).catch((err)=>{
       setError(err.message)
     })
-  },[])
+  },[movieId])
 
   return (
     <section>
+      {error && <p>{error}</p>}
       <h1>{data.title}</h1>
-      <p>{data.minage}+</p>
+      <p>{data.age}+</p>
       <p>{data.time}min</p>
     </section>
   )
