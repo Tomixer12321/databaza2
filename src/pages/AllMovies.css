@@ -8,6 +8,9 @@
     padding-right: 10px;
     margin: 10px 10px;
 }
+.one-movie p{
+    width: 200px;
+}
 .one-movie a{
     text-decoration: none;
     color: #b92930;
