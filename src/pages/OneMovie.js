@@ -1,3 +1,4 @@
+import "./OneMovie.css"
 import { useParams } from "react-router-dom"
 import { useState,useEffect } from "react"
 import projectFirestore from "../firebase/Config"
@@ -22,7 +23,7 @@ const OneMovie = () => {
   },[movieId])
 
   return (
-    <section>
+    <section className="one-movie-section">
       {error && <p>{error}</p>}
       <h1>{data.title}</h1>
       <p>{data.age}+</p>

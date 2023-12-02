@@ -1,3 +1,4 @@
+import "./Form.css"
 import { useState } from "react";
 import projectFirestore from "../firebase/Config";
 
@@ -25,15 +26,18 @@ const Form = () => {
   };
 
   return (
-    <section>
+    <section className="form-section">
+      <h1>pridanie filmov</h1>
       <form onSubmit={submitForm}>
         <input
+        className="input"
           type="text"
           placeholder="title"
           onChange={(e) => setMovieTitle(e.target.value)}
           value={movieTtile}
         />
         <input
+        className="input"
           type="number"
           placeholder="minimalny vek"
           min="1"
@@ -41,6 +45,7 @@ const Form = () => {
           value={movieAge}
         />
         <input
+        className="input"
           type="number"
           placeholder="cas filmu"
           min="1"
